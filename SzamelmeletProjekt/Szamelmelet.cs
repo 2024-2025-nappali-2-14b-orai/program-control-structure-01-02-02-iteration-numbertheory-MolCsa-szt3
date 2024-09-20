@@ -38,7 +38,7 @@ public static class Szamelmelet
         return osztok;
     }
 
-    public static string KiLista(List<int> list)
+    public static string ListaToString(List<int> list)
     {
         return string.Join(", ", list);
     }
@@ -66,18 +66,24 @@ public static class Szamelmelet
         // Prímszámok adott határig
         return GetPrimszamok(1,veg);
     }
-    public static int GetOsztokOsszege()
-    { return 0; }
+    public static int GetOsztokOsszege(int szam)
+    { return GetOsztok(szam).Sum(); }
 
     public static bool TokeletesE(int szam)
     {
-        return false;
+        return GetOsztokOsszege(szam) == 2 * szam;
     }
 
     public static List<int> GetTokeletesek(int kezdet, int veg)
     {
         // Tökéletesek adott intervallumban
-        return new List<int>();
+        List<int> tokeletesek = new List<int>();
+        for (int i = kezdet; i <= veg; i++)
+        {
+            if (TokeletesE(i)) tokeletesek.Add(i);
+        }
+
+        return tokeletesek;
     }
 
     public static List<int> GetTokeletesekHatarig(int veg)
