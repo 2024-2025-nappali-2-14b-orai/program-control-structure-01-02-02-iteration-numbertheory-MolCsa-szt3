@@ -46,19 +46,25 @@ public static class Szamelmelet
     public static bool PrimszamE(int szam)
     {
         // Primszám-e a szám
-        return false;
+        return GetOsztok(szam).Count == 2;
     }
 
     public static List<int> GetPrimszamok(int kezdet, int veg)
     {
         // Prímszámok adott intervallumban
-        return new List<int>();
+        List<int > prims = new List<int>();
+        for (int i = kezdet; i <= veg; i++)
+        {
+            if (PrimszamE(i)) prims.Add(i);
+        }
+
+        return prims;
     }
 
     public static List<int> GetPrimszamokHatarig(int veg)
     {
         // Prímszámok adott határig
-        return new List<int>();
+        return GetPrimszamok(1,veg);
     }
     public static int GetOsztokOsszege()
     { return 0; }
